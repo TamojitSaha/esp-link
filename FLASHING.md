@@ -109,6 +109,11 @@ esptool -cp /dev/ttyUSB0 -cb 460800 -cd none -bz 1M\
         -ca 0xFC000 -cf esp_init_data_default.bin\
         -ca 0xFE000 -cf blank.bin
 ```
+For Windows user, run `pip install esptool` for installing [esptool](https://github.com/espressif/esptool) and flash **ESP-01S** using
+```
+C:\Python27\Scripts\esptool.exe -p COM20 -b 460800 write_flash 0x00000 boot_v1.6.bin 0x01000 user1.bin 0xFC000 esp_init_data_default.bin 0xFE000 blank.bin
+```
+__NB:__ The flash size will automatically be selected. So no need to define flash size.
 
 __Warning__: there is a bug in boot_v1.5.bin which causes it to only boot into user1 once.
 If that fails it gets stuck trying to boot into user2. If this happens (can be seen in the
